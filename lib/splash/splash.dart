@@ -9,7 +9,7 @@ class SplashSceen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.yellow.shade800,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Center(
         child: Stack(
           alignment: AlignmentDirectional.center,
