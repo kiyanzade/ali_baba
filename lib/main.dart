@@ -44,6 +44,7 @@ class MyApp extends StatelessWidget {
         textTheme: TextTheme(
           bodyMedium: TextStyle(fontWeight: FontWeight.w700),
           bodySmall: TextStyle(color: Colors.grey.shade700),
+          bodyLarge: TextStyle(fontWeight: FontWeight.w800)
         ),
         dividerColor: Colors.black.withOpacity(0.05),
         fontFamily: 'Vazir',
