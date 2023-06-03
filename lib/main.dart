@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Vazir',
         colorScheme: ColorScheme.light(
           background: Colors.yellow.shade800,
-          surfaceVariant: Color(0xfffffff1),
+
           surface: Colors.white,
           primary: Colors.yellow.shade800,
           onPrimary: Colors.black,

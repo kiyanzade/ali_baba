@@ -3,14 +3,40 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final ScrollController _scrollController = ScrollController();
+  bool _isHomeScrolling = false;
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() {
+      if (_scrollController.offset > 0) {
+        setState(() {
+          _isHomeScrolling = true;
+        });
+      } else {
+        setState(() {
+          _isHomeScrolling = false;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.background,
+          elevation: 0,
+          backgroundColor: _isHomeScrolling
+              ? Colors.white
+              : Theme.of(context).colorScheme.background,
           actions: [
             SizedBox(
               width: MediaQuery.of(context).size.width,
@@ -37,8 +63,9 @@ class HomeScreen extends StatelessWidget {
               ),
             )
           ]),
-      backgroundColor: Theme.of(context).colorScheme.surfaceVariant,
+      backgroundColor: Colors.grey.shade100,
       body: SingleChildScrollView(
+        controller: _scrollController,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -47,7 +74,10 @@ class HomeScreen extends StatelessWidget {
                 Container(
                   height: 100,
                   decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.background),
+                    color: _isHomeScrolling
+                        ? Colors.white
+                        : Theme.of(context).colorScheme.background,
+                  ),
                 ),
                 Container(
                   clipBehavior: Clip.antiAlias,
