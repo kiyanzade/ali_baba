@@ -1,4 +1,5 @@
 import 'package:ali_baba/home/home.dart';
+import 'package:ali_baba/root/root.dart';
 import 'package:ali_baba/splash/splash.dart';
 import 'package:ali_baba/test.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: [
-        Locale('fa'),
+        const Locale('fa'),
       ],
       theme: ThemeData(
         // This is the theme of your application.
@@ -41,16 +42,14 @@ class MyApp extends StatelessWidget {
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
         // splashColor: Colors.black,
+
         textTheme: TextTheme(
-          bodyMedium: TextStyle(fontWeight: FontWeight.w700),
-          bodySmall: TextStyle(color: Colors.grey.shade700),
-          bodyLarge: TextStyle(fontWeight: FontWeight.w800)
-        ),
+            bodyMedium: const TextStyle(fontWeight: FontWeight.w700),
+            bodySmall: TextStyle(color: Colors.grey.shade700),
+            bodyLarge: const TextStyle(fontWeight: FontWeight.w800)),
         dividerColor: Colors.black.withOpacity(0.05),
         fontFamily: 'Vazir',
         colorScheme: ColorScheme.light(
-          background: Colors.yellow.shade800,
-
           surface: Colors.white,
           primary: Colors.yellow.shade800,
           onPrimary: Colors.black,
@@ -59,7 +58,7 @@ class MyApp extends StatelessWidget {
 
         useMaterial3: true,
       ),
-      home: const HomeScreen(),
+      home: const Root(),
     );
   }
 }

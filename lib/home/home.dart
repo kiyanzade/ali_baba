@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
           elevation: 0,
           backgroundColor: _isHomeScrolling
               ? Colors.white
-              : Theme.of(context).colorScheme.background,
+              : Theme.of(context).colorScheme.primary,
           actions: [
             SizedBox(
               width: MediaQuery.of(context).size.width,
@@ -75,8 +75,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 100,
                   decoration: BoxDecoration(
                     color: _isHomeScrolling
-                        ? Colors.white
-                        : Theme.of(context).colorScheme.background,
+                        ? Colors.grey.shade100
+                        : Theme.of(context).colorScheme.primary,
                   ),
                 ),
                 Container(
@@ -86,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(
-                        color: Theme.of(context).colorScheme.background,
+                        color: Theme.of(context).colorScheme.primary,
                         width: 2),
                     color: Theme.of(context).colorScheme.surface,
                   ),
@@ -259,7 +259,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Icon(
                             Icons.support_agent_rounded,
-                            color: Theme.of(context).colorScheme.background,
+                            color: Theme.of(context).colorScheme.primary,
                             size: 32,
                           ),
                           const SizedBox(
@@ -286,7 +286,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Icon(
                             Icons.tablet_mac_rounded,
-                            color: Theme.of(context).colorScheme.background,
+                            color: Theme.of(context).colorScheme.primary,
                             size: 32,
                           ),
                           const SizedBox(
@@ -313,7 +313,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Icon(
                             CupertinoIcons.tickets,
-                            color: Theme.of(context).colorScheme.background,
+                            color: Theme.of(context).colorScheme.primary,
                             size: 32,
                           ),
                           const SizedBox(
