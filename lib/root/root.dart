@@ -62,6 +62,8 @@ class _RootState extends State<Root> {
         type: BottomNavigationBarType.fixed,
         selectedFontSize: 10.5,
         unselectedFontSize: 10,
+        iconSize: 24,
+        
       ),
     );
   }
