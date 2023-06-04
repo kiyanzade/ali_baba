@@ -12,7 +12,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   ScrollController _scrollController = ScrollController();
-  var _appBarColor;
+  late Color? _appBarColor = Colors.yellow.shade800;
 
   @override
   void initState() {
@@ -30,33 +30,38 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(elevation: 0, backgroundColor: _appBarColor, actions: [
-        SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: Stack(
-            children: [
-              Align(
-                alignment: Alignment.center,
-                child: Image.asset(
-                  'assets/images/alibaba-logo-text.png',
-                  width: 100,
-                  height: 100,
-                ),
+      appBar: AppBar(
+        shadowColor: Colors.black,
+          scrolledUnderElevation: 0.25,
+          elevation: 0,
+          backgroundColor: _appBarColor,
+          actions: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      'assets/images/alibaba-logo-text.png',
+                      width: 100,
+                      height: 100,
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.inbox_outlined,
+                          color: Theme.of(context).colorScheme.secondary,
+                        )),
+                  ),
+                ],
               ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.inbox_outlined,
-                      color: Theme.of(context).colorScheme.secondary,
-                    )),
-              ),
-            ],
-          ),
-        )
-      ]),
-      backgroundColor: Colors.grey.shade100,
+            )
+          ]),
+      backgroundColor: Theme.of(context).colorScheme.tertiary,
       body: CustomScrollView(
         controller: _scrollController,
         slivers: <Widget>[
@@ -353,7 +358,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _changeAppBarColor() {
     const double maxOffset = 100; // Maximum height of the SliverAppBar
-    final double offset = _scrollController.offset+10;
+    final double offset = _scrollController.offset + 10;
 
     // Calculate a ratio between 0.0 and 1.0 based on the scroll position
     // This ratio will be used to interpolate between two colors

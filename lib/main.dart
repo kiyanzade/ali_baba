@@ -54,6 +54,7 @@ class MyApp extends StatelessWidget {
           primary: Colors.yellow.shade800,
           onPrimary: Colors.black,
           secondary: Colors.black.withOpacity(0.6),
+          tertiary: Colors.grey.shade100,
         ),
 
         useMaterial3: true,
