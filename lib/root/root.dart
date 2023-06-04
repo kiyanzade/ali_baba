@@ -14,7 +14,7 @@ class Root extends StatefulWidget {
 class _RootState extends State<Root> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle = TextStyle(fontSize: 30);
-  static const List<Widget> _widgetOptions = <Widget>[
+  static List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
     PlusScreen(),
     MyTravelScreen(),
@@ -63,7 +63,6 @@ class _RootState extends State<Root> {
         selectedFontSize: 10.5,
         unselectedFontSize: 10,
         iconSize: 24,
-        
       ),
     );
   }
