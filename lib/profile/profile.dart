@@ -15,16 +15,90 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 72,
-        title: Column(
-          children: [
-            Text(
-              'حساب کاربری',
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-            const SizedBox(
-              height: 8,
-            )
-          ],
+        title: ValueListenableBuilder(
+          builder: (context, authInfo, child) {
+            final bool isLogin =
+                authInfo != null && authInfo.phoneNumber.isNotEmpty;
+            return !isLogin
+                ? Column(
+                    children: [
+                      Text(
+                        'حساب کاربری',
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      )
+                    ],
+                  )
+                : Row(
+                    children: [
+                      Icon(CupertinoIcons.profile_circled,
+                          size: 36,
+                          color: Theme.of(context)
+                              .colorScheme
+                              .primary
+                              .withOpacity(0.5)),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'محمدصادق کیان‌زاده',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .apply(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary),
+                              ),
+                              const SizedBox(
+                                height: 4,
+                              ),
+                              Text('موجودی: 0 ریال'.toPersianDigit(),
+                                  style: Theme.of(context).textTheme.caption)
+                            ]),
+                      ),
+                      Column(children: [
+                        Row(
+                          children: [
+                            Text(
+                              '65 امتیاز'.toPersianDigit(),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .apply(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary),
+                            ),
+                            const SizedBox(
+                              width: 4,
+                            ),
+                            Icon(
+                              CupertinoIcons.smiley,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .primary
+                                  .withOpacity(0.5),
+                            )
+                          ],
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          'جزئیات امتیاز',
+                          style: Theme.of(context)
+                              .textTheme
+                              .caption!
+                              .apply(color: Colors.blue.shade800),
+                        )
+                      ])
+                    ],
+                  );
+          },
+          valueListenable: Auth.authChangeNotifier,
         ),
         centerTitle: true,
       ),
@@ -300,8 +374,8 @@ class ProfileScreen extends StatelessWidget {
                     isLogin
                         ? Container(
                             height: 56,
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 16),
+                            child: const Padding(
+                              padding: EdgeInsets.only(right: 16),
                               child: Row(
                                 children: [
                                   Icon(Icons.people_alt),
@@ -317,8 +391,8 @@ class ProfileScreen extends StatelessWidget {
                     isLogin
                         ? Container(
                             height: 56,
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 16),
+                            child: const Padding(
+                              padding: EdgeInsets.only(right: 16),
                               child: Row(
                                 children: [
                                   Icon(Icons.list_alt_rounded),
@@ -334,8 +408,8 @@ class ProfileScreen extends StatelessWidget {
                     isLogin
                         ? Container(
                             height: 56,
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 16),
+                            child: const Padding(
+                              padding: EdgeInsets.only(right: 16),
                               child: Row(
                                 children: [
                                   Icon(Icons.account_balance_wallet_outlined),
@@ -350,8 +424,8 @@ class ProfileScreen extends StatelessWidget {
                         : Container(),
                     Container(
                       height: 56,
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 16),
+                      child: const Padding(
+                        padding: EdgeInsets.only(right: 16),
                         child: Row(
                           children: [
                             Icon(Icons.cell_tower_sharp),
@@ -374,9 +448,9 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 child: Container(
                   height: 56,
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 16),
-                    child: const Row(
+                  child: const Padding(
+                    padding: EdgeInsets.only(right: 16),
+                    child: Row(
                       children: [
                         Icon(CupertinoIcons.question_circle),
                         SizedBox(
@@ -400,8 +474,8 @@ class ProfileScreen extends StatelessWidget {
                       isLogin
                           ? Container(
                               height: 56,
-                              child: Padding(
-                                padding: const EdgeInsets.only(right: 16),
+                              child: const Padding(
+                                padding: EdgeInsets.only(right: 16),
                                 child: Row(
                                   children: [
                                     Icon(Icons.support_agent_rounded),
@@ -416,8 +490,8 @@ class ProfileScreen extends StatelessWidget {
                           : Container(),
                       Container(
                         height: 56,
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 16),
+                        child: const Padding(
+                          padding: EdgeInsets.only(right: 16),
                           child: Row(
                             children: [
                               Icon(CupertinoIcons.phone),
@@ -431,8 +505,8 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       Container(
                         height: 56,
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 16),
+                        child: const Padding(
+                          padding: EdgeInsets.only(right: 16),
                           child: Row(
                             children: [
                               Icon(Icons.menu_book_rounded),
@@ -455,15 +529,15 @@ class ProfileScreen extends StatelessWidget {
                                       child: AlertDialog(
                                         backgroundColor: Colors.white,
                                         surfaceTintColor: Colors.white,
-                                        contentPadding: EdgeInsets.symmetric(
-                                            horizontal: 35.0, vertical: 10),
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
+                                                horizontal: 35.0, vertical: 10),
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(8)),
-                                        title: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child:
-                                              const Text('خروج از حساب کاربری'),
+                                        title: const Padding(
+                                          padding: EdgeInsets.all(8.0),
+                                          child: Text('خروج از حساب کاربری'),
                                         ),
                                         content: const Text(
                                             'آیا میخواهید از حساب کاربری خود خارج شوید'),
@@ -497,8 +571,8 @@ class ProfileScreen extends StatelessWidget {
                               },
                               child: Container(
                                 height: 56,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 16),
+                                child: const Padding(
+                                  padding: EdgeInsets.only(right: 16),
                                   child: Row(
                                     children: [
                                       Icon(Icons.logout_outlined),
