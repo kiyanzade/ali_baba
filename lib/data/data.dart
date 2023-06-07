@@ -18,6 +18,21 @@ class AppData {
     MagazineItem('assets/images/mag/mag5.jpg',
         'بهرین جاهای دیدنی باتومی گرجستان که باید سفر کرد'),
   ];
+
+  static List<MyTravel> myTravelItems = [
+    MyTravel('قطار یزد به تهران', "مهتاب سیرجم", "22:45 - 17 خرداد", 1,
+        1025545878, "قطار", "assets/images/travelComp/mahtab.jpg"),
+    MyTravel('قطار تهران به یزد', "مهتاب سیرجم", "18:35 - 25 آبان", 1,
+        2569545878, "قطار", "assets/images/travelComp/mahtab.jpg"),
+    MyTravel('اتوبوس تهران به مشهد', "همسفر", "10:55 - 09 دی", 1, 5654945888,
+        "اتوبوس", "assets/images/travelComp/hamsafar.jpg"),
+    MyTravel('هواپیما اهواز به اصفهان', "ایران ایر", "16:15 - 30 بهمن", 2,
+        1024785888, "هواپیما", "assets/images/travelComp/iranair.jpg"),
+    MyTravel('قطار تهران به شیراز', "ایران ایر", "19:25 - 15 آذر", 2,
+        9964785888, "قطار", "assets/images/travelComp/noor.jpg"),
+    MyTravel('قطار شیراز به مشهد', "ایران ایر", "14:20 - 17 آذر", 2, 656585888,
+        "قطار", "assets/images/travelComp/raja.jpg"),
+  ];
 }
 
 class BookItem {
@@ -33,4 +48,17 @@ class MagazineItem {
   final String title;
 
   MagazineItem(this.imageUrl, this.title);
+}
+
+class MyTravel {
+  final String title;
+  final String description;
+  final String date;
+  final int count;
+  final int id;
+  final String vehicle;
+  final String iconUrl;
+
+  MyTravel(this.title, this.description, this.date, this.count, this.id,
+      this.vehicle, this.iconUrl);
 }
