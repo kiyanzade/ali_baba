@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 
 class ProfileScreen extends StatelessWidget {
-  final TextEditingController _controller = TextEditingController();
+  
 
   ProfileScreen({super.key});
 
@@ -152,213 +152,7 @@ class ProfileScreen extends StatelessWidget {
                           const SizedBox(
                             height: 14,
                           ),
-                          ElevatedButton(
-                            onPressed: () {
-                              showModalBottomSheet(
-                                isScrollControlled: true,
-                                context: context,
-                                builder: (context) {
-                                  return Padding(
-                                    padding: EdgeInsets.only(
-                                        bottom: MediaQuery.of(context)
-                                            .viewInsets
-                                            .bottom),
-                                    child: Container(
-                                      height: 300,
-                                      width: MediaQuery.of(context).size.width,
-                                      decoration: BoxDecoration(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .surface,
-                                        borderRadius: const BorderRadius.only(
-                                            topRight: Radius.circular(16),
-                                            topLeft: Radius.circular(16)),
-                                      ),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const Padding(
-                                              padding: EdgeInsets.fromLTRB(
-                                                  0, 16, 24, 16),
-                                              child: Text(
-                                                  'ورود / ثبت نام به علی بابا')),
-                                          Divider(
-                                            thickness: 1,
-                                            color:
-                                                Theme.of(context).dividerColor,
-                                            height: 0,
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.fromLTRB(
-                                                0, 16, 24, 0),
-                                            child: Text(
-                                              'لطفا برای ادامه شماره همراه خود را وارد کنید.',
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .caption,
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            height: 36,
-                                          ),
-                                          Container(
-                                            margin: const EdgeInsets.fromLTRB(
-                                                24, 8, 24, 8),
-                                            height: 46,
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                border: Border(
-                                                    bottom: BorderSide(
-                                                        width: 1,
-                                                        color: Theme.of(context)
-                                                            .colorScheme
-                                                            .tertiary))),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                SizedBox(
-                                                  height: 20,
-                                                  width: 100,
-                                                  child: TextField(
-                                                    cursorColor:
-                                                        Theme.of(context)
-                                                            .colorScheme
-                                                            .tertiary,
-                                                    autofocus: true,
-                                                    inputFormatters: [
-                                                      LengthLimitingTextInputFormatter(
-                                                          10)
-                                                    ],
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .bodyMedium!
-                                                        .copyWith(
-                                                            fontSize: 16,
-                                                            letterSpacing: 1),
-                                                    controller: _controller,
-                                                    onChanged: (value) {
-                                                      _controller.value =
-                                                          _controller.value
-                                                              .copyWith(
-                                                        text: value
-                                                            .toPersianDigit(),
-                                                        selection: TextSelection
-                                                            .collapsed(
-                                                                offset: value
-                                                                    .length),
-                                                      );
-                                                    },
-                                                    textDirection:
-                                                        TextDirection.ltr,
-                                                    keyboardType:
-                                                        TextInputType.phone,
-                                                    decoration:
-                                                        const InputDecoration(
-                                                      border: InputBorder.none,
-                                                    ),
-                                                  ),
-                                                ),
-                                                const SizedBox(width: 8),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 10, bottom: 10),
-                                                  child: DottedLine(
-                                                    dashColor: Theme.of(context)
-                                                        .colorScheme
-                                                        .secondary,
-                                                    dashLength: 4,
-                                                    direction: Axis.vertical,
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  width: 8,
-                                                ),
-                                                Text(
-                                                  "98+".toPersianDigit(),
-                                                  style: TextStyle(
-                                                      letterSpacing: 1,
-                                                      color: Theme.of(context)
-                                                          .colorScheme
-                                                          .secondary),
-                                                ),
-                                                const SizedBox(
-                                                  width: 8,
-                                                ),
-                                                Image.asset(
-                                                  "assets/images/Flag_of_Iran.png",
-                                                  width: 30,
-                                                ),
-                                                const SizedBox(
-                                                  width: 8,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          const SizedBox(height: 36),
-                                          Container(
-                                            margin: const EdgeInsets.only(
-                                                right: 24, left: 24),
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            height: 50,
-                                            child: ElevatedButton(
-                                                style: ButtonStyle(
-                                                  foregroundColor:
-                                                      MaterialStateProperty.all(
-                                                          Colors.white),
-                                                  shape:
-                                                      MaterialStateProperty.all(
-                                                          RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          8))),
-                                                  backgroundColor:
-                                                      MaterialStateProperty.all(
-                                                          Colors.black),
-                                                ),
-                                                onPressed: () {
-                                                  authRepo.persistAuthInfo(
-                                                      AuthInfo(
-                                                          _controller.text));
-                                                  Navigator.of(context).pop();
-                                                },
-                                                child: const Text(
-                                                    'تایید و دریافت کد')),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                },
-                              );
-                            },
-                            child: const Text(
-                              "ورود یا ثبت نام",
-                              style: TextStyle(
-                                  fontSize: 13, fontWeight: FontWeight.w600),
-                            ),
-                            style: ButtonStyle(
-                                minimumSize: MaterialStateProperty.all(
-                                    const Size(56, 35)),
-                                elevation: MaterialStateProperty.all(0),
-                                foregroundColor:
-                                    MaterialStateProperty.all(Colors.black),
-                                backgroundColor: MaterialStateProperty.all(
-                                    Theme.of(context)
-                                        .colorScheme
-                                        .primary
-                                        .withOpacity(0.5))),
-                          ),
+                          ElevatedButtomLogin(),
                         ],
                       ),
                     )
@@ -602,6 +396,226 @@ class ProfileScreen extends StatelessWidget {
         },
         valueListenable: Auth.authChangeNotifier,
       ),
+    );
+  }
+}
+
+class ElevatedButtomLogin extends StatelessWidget {
+  final TextEditingController _controller = TextEditingController();
+   ElevatedButtomLogin({
+    super.key,
+   
+  }) ;
+
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        showModalBottomSheet(
+          isScrollControlled: true,
+          context: context,
+          builder: (context) {
+            return Padding(
+              padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context)
+                      .viewInsets
+                      .bottom),
+              child: Container(
+                height: 300,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  color: Theme.of(context)
+                      .colorScheme
+                      .surface,
+                  borderRadius: const BorderRadius.only(
+                      topRight: Radius.circular(16),
+                      topLeft: Radius.circular(16)),
+                ),
+                child: Column(
+                  crossAxisAlignment:
+                      CrossAxisAlignment.start,
+                  children: [
+                    const Padding(
+                        padding: EdgeInsets.fromLTRB(
+                            0, 16, 24, 16),
+                        child: Text(
+                            'ورود / ثبت نام به علی بابا')),
+                    Divider(
+                      thickness: 1,
+                      color:
+                          Theme.of(context).dividerColor,
+                      height: 0,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(
+                          0, 16, 24, 0),
+                      child: Text(
+                        'لطفا برای ادامه شماره همراه خود را وارد کنید.',
+                        style: Theme.of(context)
+                            .textTheme
+                            .caption,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 36,
+                    ),
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(
+                          24, 8, 24, 8),
+                      height: 46,
+                      width: MediaQuery.of(context)
+                          .size
+                          .width,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border(
+                              bottom: BorderSide(
+                                  width: 1,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .tertiary))),
+                      child: Row(
+                        crossAxisAlignment:
+                            CrossAxisAlignment.center,
+                        mainAxisAlignment:
+                            MainAxisAlignment.end,
+                        children: [
+                          SizedBox(
+                            height: 20,
+                            width: 100,
+                            child: TextField(
+                              cursorColor:
+                                  Theme.of(context)
+                                      .colorScheme
+                                      .tertiary,
+                              autofocus: true,
+                              inputFormatters: [
+                                LengthLimitingTextInputFormatter(
+                                    10)
+                              ],
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                      fontSize: 16,
+                                      letterSpacing: 1),
+                              controller: _controller,
+                              onChanged: (value) {
+                                _controller.value =
+                                    _controller.value
+                                        .copyWith(
+                                  text: value
+                                      .toPersianDigit(),
+                                  selection: TextSelection
+                                      .collapsed(
+                                          offset: value
+                                              .length),
+                                );
+                              },
+                              textDirection:
+                                  TextDirection.ltr,
+                              keyboardType:
+                                  TextInputType.phone,
+                              decoration:
+                                  const InputDecoration(
+                                border: InputBorder.none,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(
+                                    top: 10, bottom: 10),
+                            child: DottedLine(
+                              dashColor: Theme.of(context)
+                                  .colorScheme
+                                  .secondary,
+                              dashLength: 4,
+                              direction: Axis.vertical,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 8,
+                          ),
+                          Text(
+                            "98+".toPersianDigit(),
+                            style: TextStyle(
+                                letterSpacing: 1,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .secondary),
+                          ),
+                          const SizedBox(
+                            width: 8,
+                          ),
+                          Image.asset(
+                            "assets/images/Flag_of_Iran.png",
+                            width: 30,
+                          ),
+                          const SizedBox(
+                            width: 8,
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 36),
+                    Container(
+                      margin: const EdgeInsets.only(
+                          right: 24, left: 24),
+                      width: MediaQuery.of(context)
+                          .size
+                          .width,
+                      height: 50,
+                      child: ElevatedButton(
+                          style: ButtonStyle(
+                            foregroundColor:
+                                MaterialStateProperty.all(
+                                    Colors.white),
+                            shape:
+                                MaterialStateProperty.all(
+                                    RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius
+                                                .circular(
+                                                    8))),
+                            backgroundColor:
+                                MaterialStateProperty.all(
+                                    Colors.black),
+                          ),
+                          onPressed: () {
+                            authRepo.persistAuthInfo(
+                                AuthInfo(
+                                    _controller.text));
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text(
+                              'تایید و دریافت کد')),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+      child: const Text(
+        "ورود یا ثبت نام",
+        style: TextStyle(
+            fontSize: 13, fontWeight: FontWeight.w600),
+      ),
+      style: ButtonStyle(
+          minimumSize: MaterialStateProperty.all(
+              const Size(56, 35)),
+          elevation: MaterialStateProperty.all(0),
+          foregroundColor:
+              MaterialStateProperty.all(Colors.black),
+          backgroundColor: MaterialStateProperty.all(
+              Theme.of(context)
+                  .colorScheme
+                  .primary
+                  .withOpacity(0.5))),
     );
   }
 }

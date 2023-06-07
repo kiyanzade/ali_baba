@@ -1,3 +1,4 @@
+import 'package:ali_baba/chat_inbox/chat_inbox.dart';
 import 'package:ali_baba/data/data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        shadowColor: Colors.black,
+          shadowColor: Colors.black,
           scrolledUnderElevation: 0.25,
           elevation: 0,
           backgroundColor: _appBarColor,
@@ -51,7 +52,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => ChatInboxScreen(),
+                          ));
+                        },
                         icon: Icon(
                           Icons.inbox_outlined,
                           color: Theme.of(context).colorScheme.secondary,

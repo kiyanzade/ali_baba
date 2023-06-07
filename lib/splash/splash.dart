@@ -1,15 +1,30 @@
+import 'package:ali_baba/root/root.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 
-class SplashSceen extends StatelessWidget {
+class SplashSceen extends StatefulWidget {
   const SplashSceen({super.key});
+
+  @override
+  State<SplashSceen> createState() => _SplashSceenState();
+}
+
+class _SplashSceenState extends State<SplashSceen> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 3)).then((value) {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const Root()));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.primary,
       body: Center(
         child: Stack(
           alignment: AlignmentDirectional.center,
@@ -18,10 +33,10 @@ class SplashSceen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  padding: EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
                   width: 200,
                   height: 200,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       color: Colors.white, shape: BoxShape.circle),
                   child: Image.asset(
                     'assets/images/ali_baba_logo.png',
@@ -30,7 +45,7 @@ class SplashSceen extends StatelessWidget {
                 const SizedBox(
                   height: 52,
                 ),
-                SpinKitThreeBounce(
+                const SpinKitThreeBounce(
                   color: Colors.white,
                   size: 20,
                 ),
