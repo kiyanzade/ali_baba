@@ -1,6 +1,7 @@
 import 'package:ali_baba/data/data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_scrolling_fab_animated/flutter_scrolling_fab_animated.dart';
 
 class PlusScreen extends StatefulWidget {
   const PlusScreen({super.key});
@@ -35,6 +36,21 @@ class _PlusScreenState extends State<PlusScreen> {
         centerTitle: true,
         title: Image.asset('assets/images/plus_logo.png', width: 170),
       ),
+      floatingActionButton: ScrollingFabAnimated(
+        width: 150,
+        color: Colors.blue,
+        limitIndicator: 250,
+        icon: const Icon(
+          Icons.add_comment_outlined,
+          color: Colors.white,
+        ),
+        onPress: () {},
+        scrollController: _scrollController,
+        text: const Text(
+          "اشتراک تجربه",
+          style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
+        ),
+      ),
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
@@ -47,31 +63,34 @@ class _PlusScreenState extends State<PlusScreen> {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 14, top: 16),
-                    child: Text('دسته بندی ها'),
+                  const Padding(
+                    padding: EdgeInsets.only(right: 14, top: 16),
+                    child: Text(
+                      'دسته بندی ها',
+                      style: TextStyle(fontSize: 15),
+                    ),
                   ),
                   SizedBox(
                     height: 100,
                     child: ListView.builder(
-                      padding: EdgeInsets.fromLTRB(0, 16, 12, 16),
+                      padding: const EdgeInsets.fromLTRB(0, 16, 12, 16),
                       scrollDirection: Axis.horizontal,
                       itemCount: 4,
                       itemBuilder: (context, index) {
                         if (index == 0) {
-                          return _Category(
+                          return const _Category(
                             icon: Icons.hotel,
                             title: 'اقامت و هتل',
                           );
                         } else if (index == 1) {
-                          return _Category(
+                          return const _Category(
                               icon: Icons.store, title: 'بازار و خرید');
                         } else if (index == 2) {
-                          return _Category(
+                          return const _Category(
                               icon: Icons.beach_access,
                               title: 'جاذبه های گردشگری');
                         } else {
-                          return _Category(
+                          return const _Category(
                               icon: Icons.restaurant, title: "خورد و خوراک");
                         }
                       },
@@ -88,13 +107,13 @@ class _PlusScreenState extends State<PlusScreen> {
                     padding: const EdgeInsets.only(right: 14, top: 14),
                     child: Text(
                       listItem.title,
-                      style: TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 16),
                     ),
                   ),
                   SizedBox(
                     height: 320,
                     child: ListView.builder(
-                      padding: EdgeInsets.fromLTRB(4, 20, 4, 16),
+                      padding: const EdgeInsets.fromLTRB(4, 20, 4, 16),
                       itemCount: listItem.cities.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
@@ -148,8 +167,8 @@ class _Category extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(right: 16),
-      margin: EdgeInsets.fromLTRB(12, 0, 0, 0),
+      padding: const EdgeInsets.only(right: 16),
+      margin: const EdgeInsets.fromLTRB(12, 0, 0, 0),
       width: 150,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
@@ -163,12 +182,12 @@ class _Category extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(icon),
-            SizedBox(
+            const SizedBox(
               height: 4,
             ),
             Text(
               title,
-              style: TextStyle(fontWeight: FontWeight.w300, fontSize: 12),
+              style: const TextStyle(fontWeight: FontWeight.w300, fontSize: 12),
             ),
           ]),
     );
@@ -210,7 +229,7 @@ class _CityItem extends StatelessWidget {
               padding: const EdgeInsets.all(12),
               child: Text(
                 item.title,
-                style: TextStyle(fontSize: 15),
+                style: const TextStyle(fontSize: 15),
               ),
             ),
             Padding(
