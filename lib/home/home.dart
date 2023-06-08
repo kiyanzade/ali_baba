@@ -18,7 +18,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    _scrollController = ScrollController();
     _scrollController.addListener(_changeAppBarColor);
   }
 

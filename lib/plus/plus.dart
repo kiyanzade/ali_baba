@@ -2,8 +2,28 @@ import 'package:ali_baba/data/data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class PlusScreen extends StatelessWidget {
+class PlusScreen extends StatefulWidget {
   const PlusScreen({super.key});
+
+  @override
+  State<PlusScreen> createState() => _PlusScreenState();
+}
+
+class _PlusScreenState extends State<PlusScreen> {
+  late Color? _appBarColor = Colors.yellow.shade800;
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_changeAppBarColor);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +31,7 @@ class PlusScreen extends StatelessWidget {
       appBar: AppBar(
         toolbarHeight: 72,
         surfaceTintColor: Colors.white,
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: _appBarColor,
         centerTitle: true,
         title: Image.asset('assets/images/plus_logo.png', width: 170),
       ),
@@ -19,6 +39,7 @@ class PlusScreen extends StatelessWidget {
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
         child: ListView.builder(
+          controller: _scrollController,
           itemCount: AppData.plusListViewsItems.length + 1,
           itemBuilder: (context, index) {
             if (index == 0) {
@@ -88,6 +109,30 @@ class PlusScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _changeAppBarColor() {
+    const double maxOffset = 100; // Maximum height of the SliverAppBar
+    final double offset = _scrollController.offset + 10;
+
+    // Calculate a ratio between 0.0 and 1.0 based on the scroll position
+    // This ratio will be used to interpolate between two colors
+    final double ratio = offset / maxOffset;
+
+    // Define your initial and target colors
+    final Color initialColor = Theme.of(context)
+        .colorScheme
+        .primary; // Change this to your desired initial color
+    const Color targetColor =
+        Colors.white; // Change this to your desired target color
+
+    // Interpolate the color based on the scroll position
+    final updatedColor = Color.lerp(initialColor, targetColor, ratio);
+
+    // Update the AppBar color
+    setState(() {
+      _appBarColor = updatedColor;
+    });
   }
 }
 
