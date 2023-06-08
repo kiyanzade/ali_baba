@@ -1,4 +1,5 @@
 import 'package:ali_baba/auth/auth.dart';
+import 'package:ali_baba/flight_info/flight_info.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 
 class ProfileScreen extends StatelessWidget {
-  
-
   ProfileScreen({super.key});
 
   @override
@@ -216,18 +215,27 @@ class ProfileScreen extends StatelessWidget {
                             ),
                           )
                         : Container(),
-                    Container(
-                      height: 56,
-                      child: const Padding(
-                        padding: EdgeInsets.only(right: 16),
-                        child: Row(
-                          children: [
-                            Icon(Icons.cell_tower_sharp),
-                            SizedBox(
-                              width: 24,
-                            ),
-                            Text("اطلاعات فرودگاهی"),
-                          ],
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => FlightInfo(),
+                            ));
+                      },
+                      child: Container(
+                        height: 56,
+                        child: const Padding(
+                          padding: EdgeInsets.only(right: 16),
+                          child: Row(
+                            children: [
+                              Icon(Icons.cell_tower_sharp),
+                              SizedBox(
+                                width: 24,
+                              ),
+                              Text("اطلاعات فرودگاهی"),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -402,11 +410,9 @@ class ProfileScreen extends StatelessWidget {
 
 class ElevatedButtomLogin extends StatelessWidget {
   final TextEditingController _controller = TextEditingController();
-   ElevatedButtomLogin({
+  ElevatedButtomLogin({
     super.key,
-   
-  }) ;
-
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -418,120 +424,87 @@ class ElevatedButtomLogin extends StatelessWidget {
           builder: (context) {
             return Padding(
               padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context)
-                      .viewInsets
-                      .bottom),
+                  bottom: MediaQuery.of(context).viewInsets.bottom),
               child: Container(
                 height: 300,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                  color: Theme.of(context)
-                      .colorScheme
-                      .surface,
+                  color: Theme.of(context).colorScheme.surface,
                   borderRadius: const BorderRadius.only(
                       topRight: Radius.circular(16),
                       topLeft: Radius.circular(16)),
                 ),
                 child: Column(
-                  crossAxisAlignment:
-                      CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Padding(
-                        padding: EdgeInsets.fromLTRB(
-                            0, 16, 24, 16),
-                        child: Text(
-                            'ورود / ثبت نام به علی بابا')),
+                        padding: EdgeInsets.fromLTRB(0, 16, 24, 16),
+                        child: Text('ورود / ثبت نام به علی بابا')),
                     Divider(
                       thickness: 1,
-                      color:
-                          Theme.of(context).dividerColor,
+                      color: Theme.of(context).dividerColor,
                       height: 0,
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(
-                          0, 16, 24, 0),
+                      padding: const EdgeInsets.fromLTRB(0, 16, 24, 0),
                       child: Text(
                         'لطفا برای ادامه شماره همراه خود را وارد کنید.',
-                        style: Theme.of(context)
-                            .textTheme
-                            .caption,
+                        style: Theme.of(context).textTheme.caption,
                       ),
                     ),
                     const SizedBox(
                       height: 36,
                     ),
                     Container(
-                      margin: const EdgeInsets.fromLTRB(
-                          24, 8, 24, 8),
+                      margin: const EdgeInsets.fromLTRB(24, 8, 24, 8),
                       height: 46,
-                      width: MediaQuery.of(context)
-                          .size
-                          .width,
+                      width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                           color: Colors.white,
                           border: Border(
                               bottom: BorderSide(
                                   width: 1,
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .tertiary))),
+                                  color:
+                                      Theme.of(context).colorScheme.tertiary))),
                       child: Row(
-                        crossAxisAlignment:
-                            CrossAxisAlignment.center,
-                        mainAxisAlignment:
-                            MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           SizedBox(
                             height: 20,
                             width: 100,
                             child: TextField(
                               cursorColor:
-                                  Theme.of(context)
-                                      .colorScheme
-                                      .tertiary,
+                                  Theme.of(context).colorScheme.tertiary,
                               autofocus: true,
                               inputFormatters: [
-                                LengthLimitingTextInputFormatter(
-                                    10)
+                                LengthLimitingTextInputFormatter(10)
                               ],
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium!
-                                  .copyWith(
-                                      fontSize: 16,
-                                      letterSpacing: 1),
+                                  .copyWith(fontSize: 16, letterSpacing: 1),
                               controller: _controller,
                               onChanged: (value) {
-                                _controller.value =
-                                    _controller.value
-                                        .copyWith(
-                                  text: value
-                                      .toPersianDigit(),
-                                  selection: TextSelection
-                                      .collapsed(
-                                          offset: value
-                                              .length),
+                                _controller.value = _controller.value.copyWith(
+                                  text: value.toPersianDigit(),
+                                  selection: TextSelection.collapsed(
+                                      offset: value.length),
                                 );
                               },
-                              textDirection:
-                                  TextDirection.ltr,
-                              keyboardType:
-                                  TextInputType.phone,
-                              decoration:
-                                  const InputDecoration(
+                              textDirection: TextDirection.ltr,
+                              keyboardType: TextInputType.phone,
+                              decoration: const InputDecoration(
                                 border: InputBorder.none,
                               ),
                             ),
                           ),
                           const SizedBox(width: 8),
                           Padding(
-                            padding:
-                                const EdgeInsets.only(
-                                    top: 10, bottom: 10),
+                            padding: const EdgeInsets.only(top: 10, bottom: 10),
                             child: DottedLine(
-                              dashColor: Theme.of(context)
-                                  .colorScheme
-                                  .secondary,
+                              dashColor:
+                                  Theme.of(context).colorScheme.secondary,
                               dashLength: 4,
                               direction: Axis.vertical,
                             ),
@@ -543,9 +516,7 @@ class ElevatedButtomLogin extends StatelessWidget {
                             "98+".toPersianDigit(),
                             style: TextStyle(
                                 letterSpacing: 1,
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .secondary),
+                                color: Theme.of(context).colorScheme.secondary),
                           ),
                           const SizedBox(
                             width: 8,
@@ -562,36 +533,25 @@ class ElevatedButtomLogin extends StatelessWidget {
                     ),
                     const SizedBox(height: 36),
                     Container(
-                      margin: const EdgeInsets.only(
-                          right: 24, left: 24),
-                      width: MediaQuery.of(context)
-                          .size
-                          .width,
+                      margin: const EdgeInsets.only(right: 24, left: 24),
+                      width: MediaQuery.of(context).size.width,
                       height: 50,
                       child: ElevatedButton(
                           style: ButtonStyle(
                             foregroundColor:
-                                MaterialStateProperty.all(
-                                    Colors.white),
-                            shape:
-                                MaterialStateProperty.all(
-                                    RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius
-                                                .circular(
-                                                    8))),
+                                MaterialStateProperty.all(Colors.white),
+                            shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8))),
                             backgroundColor:
-                                MaterialStateProperty.all(
-                                    Colors.black),
+                                MaterialStateProperty.all(Colors.black),
                           ),
                           onPressed: () {
-                            authRepo.persistAuthInfo(
-                                AuthInfo(
-                                    _controller.text));
+                            authRepo
+                                .persistAuthInfo(AuthInfo(_controller.text));
                             Navigator.of(context).pop();
                           },
-                          child: const Text(
-                              'تایید و دریافت کد')),
+                          child: const Text('تایید و دریافت کد')),
                     ),
                   ],
                 ),
@@ -602,20 +562,14 @@ class ElevatedButtomLogin extends StatelessWidget {
       },
       child: const Text(
         "ورود یا ثبت نام",
-        style: TextStyle(
-            fontSize: 13, fontWeight: FontWeight.w600),
+        style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
       ),
       style: ButtonStyle(
-          minimumSize: MaterialStateProperty.all(
-              const Size(56, 35)),
+          minimumSize: MaterialStateProperty.all(const Size(56, 35)),
           elevation: MaterialStateProperty.all(0),
-          foregroundColor:
-              MaterialStateProperty.all(Colors.black),
+          foregroundColor: MaterialStateProperty.all(Colors.black),
           backgroundColor: MaterialStateProperty.all(
-              Theme.of(context)
-                  .colorScheme
-                  .primary
-                  .withOpacity(0.5))),
+              Theme.of(context).colorScheme.primary.withOpacity(0.5))),
     );
   }
 }
