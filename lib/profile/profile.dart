@@ -151,7 +151,10 @@ class ProfileScreen extends StatelessWidget {
                           const SizedBox(
                             height: 14,
                           ),
-                          ElevatedButtomLogin(),
+                          MediaQuery(
+                              data: MediaQuery.of(context)
+                                  .copyWith(textScaleFactor: 1.0),
+                              child: ElevatedButtomLogin()),
                         ],
                       ),
                     )
@@ -220,7 +223,10 @@ class ProfileScreen extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => FlightInfo(),
+                              builder: (context) => MediaQuery(
+                                  data: MediaQuery.of(context)
+                                      .copyWith(textScaleFactor: 1.0),
+                                  child: FlightInfo()),
                             ));
                       },
                       child: Container(
@@ -439,7 +445,10 @@ class ElevatedButtomLogin extends StatelessWidget {
                   children: [
                     const Padding(
                         padding: EdgeInsets.fromLTRB(0, 16, 24, 16),
-                        child: Text('ورود / ثبت نام به علی بابا')),
+                        child: Text(
+                          'ورود / ثبت نام به علی بابا',
+                          textScaleFactor: 1.0,
+                        )),
                     Divider(
                       thickness: 1,
                       color: Theme.of(context).dividerColor,
@@ -449,6 +458,7 @@ class ElevatedButtomLogin extends StatelessWidget {
                       padding: const EdgeInsets.fromLTRB(0, 16, 24, 0),
                       child: Text(
                         'لطفا برای ادامه شماره همراه خود را وارد کنید.',
+                        textScaleFactor: 1.0,
                         style: Theme.of(context).textTheme.caption,
                       ),
                     ),
@@ -473,29 +483,37 @@ class ElevatedButtomLogin extends StatelessWidget {
                           SizedBox(
                             height: 20,
                             width: 100,
-                            child: TextField(
-                              cursorColor:
-                                  Theme.of(context).colorScheme.tertiary,
-                              autofocus: true,
-                              inputFormatters: [
-                                LengthLimitingTextInputFormatter(10)
-                              ],
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(fontSize: 16, letterSpacing: 1),
-                              controller: _controller,
-                              onChanged: (value) {
-                                _controller.value = _controller.value.copyWith(
-                                  text: value.toPersianDigit(),
-                                  selection: TextSelection.collapsed(
-                                      offset: value.length),
-                                );
-                              },
-                              textDirection: TextDirection.ltr,
-                              keyboardType: TextInputType.phone,
-                              decoration: const InputDecoration(
-                                border: InputBorder.none,
+                            child: MediaQuery(
+                              data: MediaQuery.of(context)
+                                  .copyWith(textScaleFactor: 1.0),
+                              child: TextField(
+                                cursorColor:
+                                    Theme.of(context).colorScheme.tertiary,
+                                autofocus: true,
+                                inputFormatters: [
+                                  LengthLimitingTextInputFormatter(10)
+                                ],
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                      fontSize: 16,
+                                      letterSpacing: 1,
+                                    ),
+                                controller: _controller,
+                                onChanged: (value) {
+                                  _controller.value =
+                                      _controller.value.copyWith(
+                                    text: value.toPersianDigit(),
+                                    selection: TextSelection.collapsed(
+                                        offset: value.length),
+                                  );
+                                },
+                                textDirection: TextDirection.ltr,
+                                keyboardType: TextInputType.phone,
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                ),
                               ),
                             ),
                           ),
@@ -514,6 +532,7 @@ class ElevatedButtomLogin extends StatelessWidget {
                           ),
                           Text(
                             "98+".toPersianDigit(),
+                            textScaleFactor: 1.0,
                             style: TextStyle(
                                 letterSpacing: 1,
                                 color: Theme.of(context).colorScheme.secondary),
@@ -551,7 +570,10 @@ class ElevatedButtomLogin extends StatelessWidget {
                                 .persistAuthInfo(AuthInfo(_controller.text));
                             Navigator.of(context).pop();
                           },
-                          child: const Text('تایید و دریافت کد')),
+                          child: const Text(
+                            'تایید و دریافت کد',
+                            textScaleFactor: 1.0,
+                          )),
                     ),
                   ],
                 ),

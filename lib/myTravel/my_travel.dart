@@ -136,101 +136,7 @@ class MyTravelScreen extends StatelessWidget {
                       );
                     } else {
                       final MyTravel item = AppData.myTravelItems[index - 1];
-                      return Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 150,
-                        padding: const EdgeInsets.fromLTRB(16, 14, 32, 16),
-                        margin: const EdgeInsets.fromLTRB(0, 4, 0, 4),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16),
-                            color: Theme.of(context).colorScheme.surface),
-                        child: Row(
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  child: Image.asset(
-                                    item.iconUrl,
-                                    width: 50,
-                                  ),
-                                ),
-                                Text(
-                                  item.vehicle,
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.w300),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              width: 32,
-                            ),
-                            Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    item.title,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 15,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .secondary),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    item.description,
-                                    style: Theme.of(context).textTheme.caption,
-                                  ),
-                                  const SizedBox(height: 8),
-                                  Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        item.date.toPersianDigit(),
-                                        style:
-                                            Theme.of(context).textTheme.caption,
-                                      ),
-                                      const SizedBox(width: 24),
-                                      Icon(
-                                        Icons.person,
-                                        color: Colors.black.withOpacity(0.4),
-                                        size: 18,
-                                      ),
-                                      const SizedBox(width: 4),
-                                      Text(
-                                        item.count.toString().toPersianDigit(),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium!
-                                            .apply(
-                                              fontSizeFactor: 0.8,
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .secondary),
-                                      ),
-                                    ],
-                                  ),
-                                  Container(
-                                      margin: const EdgeInsets.fromLTRB(
-                                          0, 15, 0, 14),
-                                      width: 286,
-                                      height: 1,
-                                      color: Theme.of(context).dividerColor),
-                                  Text(
-                                    'شماره سفارش  ${item.id}'.toPersianDigit(),
-                                    style: TextStyle(
-                                        fontSize: 13,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .secondary,
-                                        fontWeight: FontWeight.w300),
-                                  ),
-                                ])
-                          ],
-                        ),
-                      );
+                      return TravelItem(item: item);
                     }
                   },
                 )
@@ -241,6 +147,114 @@ class MyTravelScreen extends StatelessWidget {
         );
       },
       valueListenable: Auth.authChangeNotifier,
+    );
+  }
+}
+
+class TravelItem extends StatelessWidget {
+  const TravelItem({
+    super.key,
+    required this.item,
+  });
+
+  final MyTravel item;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 150,
+      padding: const EdgeInsets.fromLTRB(16, 14, 32, 16),
+      margin: const EdgeInsets.fromLTRB(0, 4, 0, 4),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          color: Theme.of(context).colorScheme.surface),
+      child: Row(
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Image.asset(
+                  item.iconUrl,
+                  width: 50,
+                ),
+              ),
+              Text(
+                item.vehicle,
+                style: const TextStyle(
+                    fontWeight: FontWeight.w300),
+              ),
+            ],
+          ),
+          const SizedBox(
+            width: 32,
+          ),
+          Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  item.title,
+                  style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 15,
+                      color: Theme.of(context)
+                          .colorScheme
+                          .secondary),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  item.description,
+                  style: Theme.of(context).textTheme.caption,
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  crossAxisAlignment:
+                      CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      item.date.toPersianDigit(),
+                      style:
+                          Theme.of(context).textTheme.caption,
+                    ),
+                    const SizedBox(width: 24),
+                    Icon(
+                      Icons.person,
+                      color: Colors.black.withOpacity(0.4),
+                      size: 18,
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      item.count.toString().toPersianDigit(),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .apply(
+                            fontSizeFactor: 0.8,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .secondary),
+                    ),
+                  ],
+                ),
+                Container(
+                    margin: const EdgeInsets.fromLTRB(
+                        0, 15, 0, 14),
+                    width: 286,
+                    height: 1,
+                    color: Theme.of(context).dividerColor),
+                Text(
+                  'شماره سفارش  ${item.id}'.toPersianDigit(),
+                  style: TextStyle(
+                      fontSize: 13,
+                      color: Theme.of(context)
+                          .colorScheme
+                          .secondary,
+                      fontWeight: FontWeight.w300),
+                ),
+              ])
+        ],
+      ),
     );
   }
 }

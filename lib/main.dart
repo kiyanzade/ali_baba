@@ -62,7 +62,10 @@ class MyApp extends StatelessWidget {
 
         useMaterial3: true,
       ),
-      home: const SplashSceen(),
+      home: MediaQuery(
+          data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+          child: const SplashSceen()),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
