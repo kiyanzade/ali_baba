@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   ScrollController _scrollController = ScrollController();
-  late Color? _appBarColor = Colors.yellow.shade800;
+  Color? _appBarColor = Colors.yellow.shade800;
 
   @override
   void initState() {
@@ -564,7 +564,7 @@ class _TableElement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox.fromSize(
-      size: const Size(197.4, 56),
+      size: Size((MediaQuery.of(context).size.width / 2) - 24, 56),
       child: ClipRRect(
         child: Material(
           color: Colors.transparent,

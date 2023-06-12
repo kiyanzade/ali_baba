@@ -16,8 +16,10 @@ class _SplashSceenState extends State<SplashSceen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3)).then((value) {
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const Root()));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => MediaQuery(
+              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+              child: const Root())));
     });
   }
 
