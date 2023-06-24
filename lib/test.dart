@@ -1,28 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+void main() {
+  runApp(MyApp());
+}
 
-class TabBarDemo extends StatelessWidget {
-  const TabBarDemo({super.key});
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          appBar: AppBar(
-
-            title: const Text('Tabs Demo'),
-          ),
-          body: const TabBarView(
-            children: [
-              Icon(Icons.directions_car),
-              Icon(Icons.directions_transit),
-              Icon(Icons.directions_bike),
-            ],
-          ),
-        ),
-      ),
+      home: Home(),
     );
+  }
+}
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Open Phone Dialer"),
+          backgroundColor: Colors.redAccent,
+        ),
+        body: Container(
+            padding: EdgeInsets.only(top: 20, left: 20, right: 20),
+            alignment: Alignment.topCenter,
+            child: Column(
+              children: [
+                ElevatedButton(
+                    onPressed: () async {
+                      String phoneNumber = "123456789";
+                      final Uri launchUri = Uri(
+                        scheme: 'tel',
+                        path: phoneNumber,
+                      );
+                      await launchUrl(launchUri);
+                    },
+                    child: Text("Call Us Now"))
+              ],
+            )));
   }
 }
