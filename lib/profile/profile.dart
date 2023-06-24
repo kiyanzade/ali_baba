@@ -1,4 +1,5 @@
 import 'package:ali_baba/auth/auth.dart';
+import 'package:ali_baba/contact_us/contact_us.dart';
 import 'package:ali_baba/flight_info/flight_info.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/cupertino.dart';
@@ -296,18 +297,25 @@ class ProfileScreen extends StatelessWidget {
                               ),
                             )
                           : Container(),
-                      Container(
-                        height: 56,
-                        child: const Padding(
-                          padding: EdgeInsets.only(right: 16),
-                          child: Row(
-                            children: [
-                              Icon(CupertinoIcons.phone),
-                              SizedBox(
-                                width: 24,
-                              ),
-                              Text("تماس با ما"),
-                            ],
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const ContactUs(),
+                          ));
+                        },
+                        child: Container(
+                          height: 56,
+                          child: const Padding(
+                            padding: EdgeInsets.only(right: 16),
+                            child: Row(
+                              children: [
+                                Icon(CupertinoIcons.phone),
+                                SizedBox(
+                                  width: 24,
+                                ),
+                                Text("تماس با ما"),
+                              ],
+                            ),
                           ),
                         ),
                       ),

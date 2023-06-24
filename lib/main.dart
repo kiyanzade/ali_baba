@@ -46,6 +46,10 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         // splashColor: Colors.black,
 
+        elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.white))),
+
         textTheme: TextTheme(
             bodyMedium: const TextStyle(fontWeight: FontWeight.w700),
             bodySmall: TextStyle(color: Colors.grey.shade700),
